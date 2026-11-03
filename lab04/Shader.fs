@@ -18,38 +18,37 @@ void main()
 
     // Task 3.2e FS: find on which side of the plane is the vertex and
     // apply different colors (red above 0.02, green below -0.02 else blue)
-    //
-    float d = dot(planeCoeffs, vertexPosition_worldspace);
-    if (d > 0.02)
-    {
-        color = vec4(1.0, 0.0, 0.0, 1.0);
-    }
-    else if (d<-0.02)
-    {
-        color = vec4(0.0, 1.0, 0.0, 1.0);
 
-    }
-    else
-    {   
-        color = vec4(0.0, 0.0, 1.0, 1.0);
-    }
-    //*/
+//     float d = dot(planeCoeffs, vertexPosition_worldspace);
+//     if (d > 0.02)
+//     {
+//         color = vec4(1.0, 0.0, 0.0, 1.0);
+//     }
+//     else if (d<-0.02)
+//     {
+//         color = vec4(0.0, 1.0, 0.0, 1.0);
+//
+//     }
+//     else
+//     {
+//         color = vec4(0.0, 0.0, 1.0, 1.0);
+//     }
+//
 
     // Task 3.3 FS: color the model based on the vertex position and make the
     // lower part vanish (use alpha)
-    /*/
-    float d = ...
+    //
+    float d = dot(planeCoeffs, vertexPosition_worldspace);
     if (d > 0.02f)
     {
-        color = vec4(...);
-
+        color = vec4(vertexPosition_worldspace.xyz, 1.0f);
     }
     else if (d < -0.02f)
     {
-        color = vec4(...);
+        color = vec4(vertexPosition_worldspace.xyz, 0.3);
     }
     else{
-        color = vec4(...);
+        color = vec4(0.0f, 0.0f, 0.0f, 0.5f);
     }
     //*/
     // Homework 1: assign color based on distance from plane
