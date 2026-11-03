@@ -123,7 +123,7 @@ void mainLoop() {
         glUseProgram(shaderProgram);
 
         // Task 1.2: Render the plane
-        //
+        /*/
         plane->bind();
         mat4 planeModelMatrix = mat4(1);
         mat4 planeVP = projectionMatrix * viewMatrix;
@@ -135,16 +135,16 @@ void mainLoop() {
         // Task 2: 
         // Task 2.1: translate the plane in + -y direction using the keyboard
         // Task 2.2: and rotate the plane around z-direction
-        /*/
+        //
         plane->bind();
         // Task 2.1: translation, use planeY as variable
         vec3 planePosition(0, planeY, 0);
-        mat4 planeTranslation = translate(...); 
+        mat4 planeTranslation = translate(mat4(), planePosition);
 
         // Task 2.2: rotation, use planeAngle as variable
-        mat4 planeRotation = rotate(mat4(), ..., ...);
+        mat4 planeRotation = rotate(mat4(), planeAngle, vec3(0, 0, 1));
 
-        mat4 planeModelMatrix = ... ;
+        mat4 planeModelMatrix = planeTranslation * planeRotation;
         mat4 planeVP = projectionMatrix * viewMatrix;
         glUniformMatrix4fv(VPLocation, 1, GL_FALSE, &planeVP[0][0]);
         glUniformMatrix4fv(MLocation, 1, GL_FALSE, &planeModelMatrix[0][0]);
@@ -200,7 +200,12 @@ void pollKeyboard(GLFWwindow* window, int key, int scancode, int action, int mod
     }
 
     // Task 2.2: planeAngle J, L keys
-
+    if (key == GLFW_KEY_L) {
+        planeAngle += 0.05;
+    }
+    if (key == GLFW_KEY_J) {
+        planeAngle -= 0.05;
+    }
 
     // Task 3.4: toggle polygon mode
     if (key == GLFW_KEY_T && action == GLFW_PRESS) {
