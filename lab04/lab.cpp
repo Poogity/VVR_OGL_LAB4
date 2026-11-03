@@ -82,7 +82,7 @@ void createContext() {
 
     // model
     // Task 1.3 Load a heart model as a Drawable
-    // model = ...
+    model =  new Drawable("heart.obj");
     
     // Task 1.1: Construct a plane (x-z) using Drawable
     //*/
@@ -92,10 +92,12 @@ void createContext() {
         vec3(-size, planeY,  size),
         vec3( size, planeY,  size),
         // add a second triangle
-        // ...
+        vec3(size, planeY, size),
+        vec3(size, planeY, -size),
+        vec3(-size, planeY, -size)
     };
 
-    // plane = new Drawable(...); 
+    plane = new Drawable(planeVertices);
     
     //*/
 }
@@ -121,7 +123,7 @@ void mainLoop() {
         glUseProgram(shaderProgram);
 
         // Task 1.2: Render the plane
-        /*/
+        //
         plane->bind();
         mat4 planeModelMatrix = mat4(1);
         mat4 planeVP = projectionMatrix * viewMatrix;
@@ -173,7 +175,7 @@ void mainLoop() {
 
         // model
         // Task 1.4: Draw the heart model
-        /*/
+        //
         model->bind();
         mat4 modelModelMatrix = mat4(1);
         mat4 modelVP = projectionMatrix * viewMatrix;
@@ -194,7 +196,7 @@ void pollKeyboard(GLFWwindow* window, int key, int scancode, int action, int mod
         planeY += 0.01; 
     }
     if (key == GLFW_KEY_K) {
-        // planeY ...
+        planeY -= 0.01;
     }
 
     // Task 2.2: planeAngle J, L keys
