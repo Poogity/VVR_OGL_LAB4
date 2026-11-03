@@ -17,21 +17,21 @@ void main()
     color = vec4(0.0, 0.0, 0.0, 1.0);
 
     // Task 3.2e FS: find on which side of the plane is the vertex and
-    // apply different colors (red above 0.02, blue below -0.02 else blue)
-    /*/
-    float d = ...;
+    // apply different colors (red above 0.02, green below -0.02 else blue)
+    //
+    float d = dot(planeCoeffs, vertexPosition_worldspace);
     if (d > 0.02)
     {
-        color = vec4(...);
+        color = vec4(1.0, 0.0, 0.0, 1.0);
     }
     else if (d<-0.02)
     {
-        color = vec4(...);
+        color = vec4(0.0, 1.0, 0.0, 1.0);
 
     }
     else
     {   
-        color = vec4(...);
+        color = vec4(0.0, 0.0, 1.0, 1.0);
     }
     //*/
 
