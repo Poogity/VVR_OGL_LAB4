@@ -213,8 +213,8 @@ void pollKeyboard(GLFWwindow* window, int key, int scancode, int action, int mod
         glGetIntegerv(GL_POLYGON_MODE, &polygonMode[0]);
 
         // if GL_LINE, if GL_FILL check with polygonMode[0]
-        // if (polygonMode[0] == ...) glPolygonMode(GL_FRONT_AND_BACK, ...);
-        // if (polygonMode[0] == ...) glPolygonMode(GL_FRONT_AND_BACK, ...);
+        if (polygonMode[0] == GL_LINE) glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        if (polygonMode[0] == GL_FILL) glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     }
 
     // Task 4.1a: change the detachment coefficient using U, O keys
