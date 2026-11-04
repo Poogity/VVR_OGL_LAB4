@@ -24,17 +24,17 @@ void main()
 
     // Task 4.1c: displace the coordinates above by the detachmentDisplacement 
     // and the coordinates below by -detachmentDisplacement
-    /*/
-    float d = ...;
+    //
+    float d = dot(planeCoeffs, vertexPosition_worldspace);
     if (d > 0.001f)
     {
-        //vertexPosition_worldspace = ...;
+        vertexPosition_worldspace += vec4(detachmentDisplacement, 0.0);
     }
     else if (d < -0.001f)
     {
-        //vertexPosition_worldspace = ...;
+        vertexPosition_worldspace -= vec4(detachmentDisplacement, 0.0);;
     }
-    //*/
+    ///
     
     gl_Position = VP * vertexPosition_worldspace;
 

@@ -55,9 +55,9 @@ void main()
 
 
     // Task 4.1d: discard the fragments that are between the two halves
-    /*/
+    //
     float l = length(detachmentDisplacement);
-    if ((...) ||(...))
+    if ((d > 0.0f && d < l) ||(d < 0.0f && -d < l))
     {
         discard;
     }

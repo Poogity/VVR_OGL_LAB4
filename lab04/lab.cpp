@@ -158,7 +158,7 @@ void mainLoop() {
         // Task 3.1: calculate plane coefficients
         //
         vec3 planeNormal(planeModelMatrix * vec4(0.0, 1.0, 0.0, 0.0));
-        float d = -dot(planePosition, planeNormal);
+        float d = -dot(planeNormal, planePosition);
         vec4 planeCoeffs(planeNormal, d);
         //*/
 
@@ -168,8 +168,8 @@ void mainLoop() {
         //*/
 
         // Task 4.1b: calculate and transmit the detachment offset to the GPU
-        /*/
-        vec3 detachmentVec = ...;
+        //
+        vec3 detachmentVec = detachmentCoeff * planeNormal;
         glUniform3fv(detachmentCoeffLocation, 1, &detachmentVec[0]);
         //*/
 
@@ -219,7 +219,15 @@ void pollKeyboard(GLFWwindow* window, int key, int scancode, int action, int mod
 
     // Task 4.1a: change the detachment coefficient using U, O keys
     // Use variable: detachmentCoeff
-
+    if (key == GLFW_KEY_U) {
+        detachmentCoeff += 0.03f;
+    }
+    if (key == GLFW_KEY_O) {
+        detachmentCoeff -= 0.03f;
+        if (detachmentCoeff <=0) {
+            detachmentCoeff = 0.01f;
+        }
+    }
 }
 
 void initialize() {
