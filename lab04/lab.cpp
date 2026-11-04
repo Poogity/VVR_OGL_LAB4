@@ -157,7 +157,7 @@ void mainLoop() {
 
         // Task 3.1: calculate plane coefficients
         //
-        vec3 planeNormal(planeRotation * vec4(0, 1, 0, 0)); 
+        vec3 planeNormal(planeModelMatrix * vec4(0.0, 1.0, 0.0, 0.0));
         float d = -dot(planePosition, planeNormal);
         vec4 planeCoeffs(planeNormal, d);
         //*/
@@ -193,10 +193,10 @@ void mainLoop() {
 void pollKeyboard(GLFWwindow* window, int key, int scancode, int action, int mods) {
     // Task 2.1:
     if (key == GLFW_KEY_I) {
-        planeY += 0.01; 
+        planeY += 0.05;
     }
     if (key == GLFW_KEY_K) {
-        planeY -= 0.01;
+        planeY -= 0.05;
     }
 
     // Task 2.2: planeAngle J, L keys
