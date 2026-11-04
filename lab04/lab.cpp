@@ -120,7 +120,7 @@ void mainLoop() {
         camera->update();
         mat4 projectionMatrix = camera->projectionMatrix;
         mat4 viewMatrix = camera->viewMatrix;
-        glUseProgram(shaderProgram);
+        // glUseProgram(shaderProgram);
 
         // Task 1.2: Render the plane
         /*/
@@ -130,12 +130,12 @@ void mainLoop() {
         glUniformMatrix4fv(VPLocation, 1, GL_FALSE, &planeVP[0][0]);
         glUniformMatrix4fv(MLocation, 1, GL_FALSE, &planeModelMatrix[0][0]);
         plane->draw();
-        //*/
+        /*/
 
-        // Task 2: 
+        // Task 2:
         // Task 2.1: translate the plane in + -y direction using the keyboard
         // Task 2.2: and rotate the plane around z-direction
-        //
+        /*/
         plane->bind();
         // Task 2.1: translation, use planeY as variable
         vec3 planePosition(0, planeY, 0);
@@ -150,10 +150,19 @@ void mainLoop() {
         glUniformMatrix4fv(MLocation, 1, GL_FALSE, &planeModelMatrix[0][0]);
         plane->draw();
         //*/
+        //
+        glUseProgram(planeShaderProgram);
+        plane->bind();
+        // Task 2.1: translation, use planeY as variable
+        vec3 planePosition(0, planeY, 0);
+        mat4 planeTranslation = translate(mat4(), planePosition);
 
-
-        // Task 5.3: Render the plane using the new shader program
-       
+        // Task 2.2: rotation, use planeAngle as variable
+        mat4 planeRotation = rotate(mat4(), planeAngle, vec3(0.0f, 0.0f, 1.0f));
+        mat4 planeModelMatrix = planeTranslation * planeRotation;
+        mat4 planeVP = projectionMatrix * viewMatrix;
+        glUniformMatrix4fv(VPLocation, 1, GL_FALSE, &planeVP[0][0]);
+        glUniformMatrix4fv(MLocation, 1, GL_FALSE, &planeModelMatrix[0][0]);
 
         // Task 3.1: calculate plane coefficients
         //
@@ -161,7 +170,8 @@ void mainLoop() {
         float d = -dot(planeNormal, planePosition);
         vec4 planeCoeffs(planeNormal, d);
         //*/
-
+        plane->draw();
+        glUseProgram(shaderProgram);
         // Task 3.2d:
         //
         glUniform4f(planeLocation, planeCoeffs.x, planeCoeffs.y, planeCoeffs.z, planeCoeffs.w);
@@ -171,7 +181,6 @@ void mainLoop() {
         //
         vec3 detachmentVec = detachmentCoeff * planeNormal;
         glUniform3fv(detachmentCoeffLocation, 1, &detachmentVec[0]);
-        //*/
 
         // model
         // Task 1.4: Draw the heart model
