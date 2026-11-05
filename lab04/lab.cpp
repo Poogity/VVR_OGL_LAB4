@@ -154,7 +154,8 @@ void mainLoop() {
 
         // Task 5.3: Render the plane using the new shader program
        
-
+        // -------- TODO: to fix the flickering, move this block right before you draw the plane! --------
+	    // opengl draws the previous frame's plane while the shaders have the correct frame.
         // Task 3.1: calculate plane coefficients
         //
         vec3 planeNormal(planeModelMatrix * vec4(0.0, 1.0, 0.0, 0.0));
@@ -172,7 +173,8 @@ void mainLoop() {
         vec3 detachmentVec = detachmentCoeff * planeNormal;
         glUniform3fv(detachmentCoeffLocation, 1, &detachmentVec[0]);
         //*/
-
+       // ---------------------------------------------------------------------------
+       //
         // model
         // Task 1.4: Draw the heart model
         //

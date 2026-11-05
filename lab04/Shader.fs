@@ -39,16 +39,18 @@ void main()
     // lower part vanish (use alpha)
     //
     float d = dot(planeCoeffs, vertexPosition_worldspace);
-    if (d > 0.02f)
+    if (d > 0.02)
     {
-        color = vec4(vertexPosition_worldspace.xyz, 1.0f);
+        color = vec4(1.0, 0.0, 0.0, 1.0);
     }
-    else if (d < -0.02f)
+    else if (d<-0.02)
     {
-        color = vec4(vertexPosition_worldspace.xyz, 0.3);
+        color = vec4(0.0, 1.0, 0.0, 0.3);
+
     }
-    else{
-        color = vec4(0.0f, 0.0f, 0.0f, 0.5f);
+    else
+    {
+        color = vec4(0.0, 0.0, 1.0, 1.0);
     }
     //*/
     // Homework 1: assign color based on distance from plane
