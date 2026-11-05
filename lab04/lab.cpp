@@ -58,7 +58,7 @@ float detachmentCoeff = 0.0f;
 
 void createContext() {
     // Create and compile our GLSL program from the shaders
-    shaderProgram = loadShaders("Shader.vs", "Shader.fs");
+    shaderProgram = loadShaders("Shader.vertexshader", "Shader.fragmentshader");
 
     // Draw wire frame triangles or fill: GL_LINE, or GL_FILL
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -75,7 +75,7 @@ void createContext() {
 
     // Task 5.2:
     // Create a new shader program to render the plane
-    planeShaderProgram = loadShaders("plane.vs", "plane.fs");
+    planeShaderProgram = loadShaders("plane.vertexshader", "plane.fragmentshader");
 
     planeVPLocation = glGetUniformLocation(planeShaderProgram, "VP");
     planeMLocation = glGetUniformLocation(planeShaderProgram, "M");

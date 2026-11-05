@@ -112,8 +112,8 @@ add_executable(lab04
   common/texture.cpp
   common/texture.h
 
-        lab04/Shader.fs
-        lab04/Shader.vs
+        lab04/Shader.fragmentshader
+        lab04/Shader.vertexshader
   )
 target_link_libraries(lab04
   ${ALL_LIBS}
